@@ -1,0 +1,11 @@
+node_modules/
+dist/
+db/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+*.log
+.env
+.env.local
+package-lock.json
+wasm/

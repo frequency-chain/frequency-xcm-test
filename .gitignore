@@ -1,0 +1,9 @@
+node_modules/
+dist/
+db/
+.env
+*.log
+*.sqlite
+
+# Large runtime blobs — place locally (see README)
+wasm/*.wasm

@@ -1,0 +1,306 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`XCM Channel Opening with Coretime > opens HRMP channel with Coretime via governance XCM > frequency-events 1`] = `
+[
+  {
+    "data": {
+      "messageHash": "(hash)",
+    },
+    "method": "UpwardMessageSent",
+    "section": "parachainSystem",
+  },
+  {
+    "data": {
+      "destination": {
+        "interior": "Here",
+        "parents": 1,
+      },
+      "message": [
+        {
+          "WithdrawAsset": [
+            {
+              "fun": {
+                "Fungible": 500000000000,
+              },
+              "id": {
+                "interior": "Here",
+                "parents": 0,
+              },
+            },
+          ],
+        },
+        {
+          "BuyExecution": {
+            "fees": {
+              "fun": {
+                "Fungible": 500000000000,
+              },
+              "id": {
+                "interior": "Here",
+                "parents": 0,
+              },
+            },
+            "weightLimit": "Unlimited",
+          },
+        },
+        {
+          "Transact": {
+            "call": {
+              "encoded": "0x3c0aed030000",
+            },
+            "fallbackMaxWeight": {
+              "proofSize": "(rounded 74000)",
+              "refTime": 12000000000,
+            },
+            "originKind": "Native",
+          },
+        },
+        "RefundSurplus",
+        {
+          "DepositAsset": {
+            "assets": {
+              "Wild": "All",
+            },
+            "beneficiary": {
+              "interior": {
+                "X1": [
+                  {
+                    "Parachain": "(rounded 2100)",
+                  },
+                ],
+              },
+              "parents": 0,
+            },
+          },
+        },
+      ],
+      "messageId": "(hash)",
+      "origin": {
+        "interior": "Here",
+        "parents": 0,
+      },
+    },
+    "method": "Sent",
+    "section": "polkadotXcm",
+  },
+  {
+    "data": {
+      "id": null,
+      "result": "Ok",
+      "task": [
+        "(rounded 13000000)",
+        0,
+      ],
+    },
+    "method": "Dispatched",
+    "section": "scheduler",
+  },
+  {
+    "data": {
+      "dispatchInfo": {
+        "class": "Mandatory",
+        "paysFee": "Yes",
+        "weight": {
+          "proofSize": "(rounded 2000)",
+          "refTime": "(rounded 410000000)",
+        },
+      },
+    },
+    "method": "ExtrinsicSuccess",
+    "section": "system",
+  },
+  {
+    "data": {
+      "dispatchInfo": {
+        "class": "Mandatory",
+        "paysFee": "Yes",
+        "weight": {
+          "proofSize": 0,
+          "refTime": "(rounded 98000000)",
+        },
+      },
+    },
+    "method": "ExtrinsicSuccess",
+    "section": "system",
+  },
+]
+`;
+
+exports[`XCM Channel Opening with Coretime > opens HRMP channel with Coretime via governance XCM > frequency-ump-events 1`] = `
+[
+  {
+    "v5": [
+      {
+        "withdrawAsset": [
+          {
+            "fun": {
+              "fungible": 500000000000,
+            },
+            "id": {
+              "interior": {
+                "here": null,
+              },
+              "parents": 0,
+            },
+          },
+        ],
+      },
+      {
+        "buyExecution": {
+          "fees": {
+            "fun": {
+              "fungible": 500000000000,
+            },
+            "id": {
+              "interior": {
+                "here": null,
+              },
+              "parents": 0,
+            },
+          },
+          "weightLimit": {
+            "unlimited": null,
+          },
+        },
+      },
+      {
+        "transact": {
+          "call": {
+            "encoded": "0x3c0aed030000",
+          },
+          "fallbackMaxWeight": {
+            "proofSize": 73603,
+            "refTime": 12000000000,
+          },
+          "originKind": "Native",
+        },
+      },
+      {
+        "refundSurplus": null,
+      },
+      {
+        "depositAsset": {
+          "assets": {
+            "wild": {
+              "all": null,
+            },
+          },
+          "beneficiary": {
+            "interior": {
+              "x1": [
+                {
+                  "parachain": 2091,
+                },
+              ],
+            },
+            "parents": 0,
+          },
+        },
+      },
+      {
+        "setTopic": "0xb84ec0c0e3b547bc93c815ba65c9d90f07baaa7e40a97182964edfdf661f7ba8",
+      },
+    ],
+  },
+]
+`;
+
+exports[`XCM Channel Opening with Coretime > opens HRMP channel with Coretime via governance XCM > polkadot-events 1`] = `
+[
+  {
+    "data": {
+      "who": "13YMK2dyjeWEiCk1t1jn71fyRUN2uaz2G14S783BCR3LvvaD",
+    },
+    "method": "Upgraded",
+    "section": "balances",
+  },
+  {
+    "data": {
+      "amount": 500000000000,
+      "who": "13YMK2dyjeWEiCk1t1jn71fyRUN2uaz2G14S783BCR3LvvaD",
+    },
+    "method": "Withdraw",
+    "section": "balances",
+  },
+  {
+    "data": {
+      "proposedMaxCapacity": 25,
+      "proposedMaxMessageSize": "(rounded 100000)",
+      "recipient": "(rounded 1000)",
+      "sender": "(rounded 2100)",
+    },
+    "method": "HrmpSystemChannelOpened",
+    "section": "hrmp",
+  },
+  {
+    "data": {
+      "proposedMaxCapacity": 25,
+      "proposedMaxMessageSize": "(rounded 100000)",
+      "recipient": "(rounded 2100)",
+      "sender": "(rounded 1000)",
+    },
+    "method": "HrmpSystemChannelOpened",
+    "section": "hrmp",
+  },
+  {
+    "data": {
+      "amount": "(rounded 500000000000)",
+      "who": "13YMK2dyjeWEiCk1t1jn71fyRUN2uaz2G14S783BCR3LvvaD",
+    },
+    "method": "Deposit",
+    "section": "balances",
+  },
+  {
+    "data": {
+      "amount": "(rounded 140000000)",
+    },
+    "method": "BurnedDebt",
+    "section": "balances",
+  },
+  {
+    "data": {
+      "id": "(hash)",
+      "origin": {
+        "Ump": {
+          "Para": "(rounded 2100)",
+        },
+      },
+      "success": true,
+      "weightUsed": {
+        "proofSize": "(rounded 14000)",
+        "refTime": "(rounded 1800000000)",
+      },
+    },
+    "method": "Processed",
+    "section": "messageQueue",
+  },
+  {
+    "data": {
+      "dispatchInfo": {
+        "class": "Mandatory",
+        "paysFee": "Yes",
+        "weight": {
+          "proofSize": "(rounded 1500)",
+          "refTime": "(rounded 260000000)",
+        },
+      },
+    },
+    "method": "ExtrinsicSuccess",
+    "section": "system",
+  },
+  {
+    "data": {
+      "dispatchInfo": {
+        "class": "Mandatory",
+        "paysFee": "Yes",
+        "weight": {
+          "proofSize": 2,
+          "refTime": "(rounded 130000000)",
+        },
+      },
+    },
+    "method": "ExtrinsicSuccess",
+    "section": "system",
+  },
+]
+`;
