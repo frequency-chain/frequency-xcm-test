@@ -2,28 +2,41 @@ import { u8aToHex, stringToU8a, compactToU8a, hexToU8a, isHex } from '@polkadot/
 import { blake2AsU8a, decodeAddress } from '@polkadot/util-crypto';
 import { setStorage } from '@acala-network/chopsticks-core';
 
+function paraIdToLeBytes(paraId: number): Uint8Array {
+  const paraIdBytes = new Uint8Array(4);
+  paraIdBytes[0] = paraId & 0xff;
+  paraIdBytes[1] = (paraId >> 8) & 0xff;
+  paraIdBytes[2] = (paraId >> 16) & 0xff;
+  paraIdBytes[3] = (paraId >> 24) & 0xff;
+  return paraIdBytes;
+}
+
 /**
  * Child sovereign account for a parachain on the relay chain.
  * Format: "para" + paraId (LE) + zero padding.
  * @see https://substrate.stackexchange.com/questions/1200/how-to-calculate-sovereignaccount-for-parachain/1210
  */
 export async function getChildSovereignAccount(paraId: number): Promise<string> {
-  const paraIdBytes = new Uint8Array(4);
-  paraIdBytes[0] = paraId & 0xff;
-  paraIdBytes[1] = (paraId >> 8) & 0xff;
-  paraIdBytes[2] = (paraId >> 16) & 0xff;
-  paraIdBytes[3] = (paraId >> 24) & 0xff;
-
   const accountId = new Uint8Array(32);
   accountId[0] = 0x70; // p
   accountId[1] = 0x61; // a
   accountId[2] = 0x72; // r
   accountId[3] = 0x61; // a
+  accountId.set(paraIdToLeBytes(paraId), 4);
+  return u8aToHex(accountId);
+}
 
-  for (let i = 0; i < 4; i++) {
-    accountId[4 + i] = paraIdBytes[i];
-  }
-
+/**
+ * Sibling sovereign account for a parachain on another parachain (e.g. Coretime).
+ * Format: "sibl" + paraId (LE) + zero padding.
+ */
+export async function getSiblingSovereignAccount(paraId: number): Promise<string> {
+  const accountId = new Uint8Array(32);
+  accountId[0] = 0x73; // s
+  accountId[1] = 0x69; // i
+  accountId[2] = 0x62; // b
+  accountId[3] = 0x6c; // l
+  accountId.set(paraIdToLeBytes(paraId), 4);
   return u8aToHex(accountId);
 }
 
@@ -96,6 +109,9 @@ export const getAccountBalance = async (api: any, address: string): Promise<bigi
 /**
  * Schedule a call for the next block as Root via the Scheduler pallet.
  * Simulates an enacted Democracy proposal (Frequency mainnet has no Sudo).
+ *
+ * Uses `chain.head.number` (not RPC header) so the agenda block matches the
+ * next Chopsticks block even if the API head is briefly stale.
  */
 export async function scheduleRootCall(
   network: {
@@ -104,8 +120,8 @@ export async function scheduleRootCall(
   },
   call: { method: { toHex: () => string } }
 ): Promise<void> {
-  const header = await network.api.rpc.chain.getHeader();
-  const nextBlock = header.number.toNumber() + 1;
+  const nextBlock = network.chain.head.number + 1;
+  console.log("----------call.method.toHex", call.method.toHex());
 
   await setStorage(network.chain, {
     Scheduler: {
@@ -131,4 +147,19 @@ export async function scheduleRootCall(
   });
 
   await network.chain.newBlock();
+
+  const events = await network.api.query.system.events();
+  const dispatched = events.filter(
+    ({ event }: { event: { section: string; method: string } }) =>
+      event.section === 'scheduler' && event.method === 'Dispatched'
+  );
+  if (dispatched.length === 0) {
+    const summary = events.map(
+      ({ event }: { event: { section: string; method: string } }) =>
+        `${event.section}.${event.method}`
+    );
+    throw new Error(
+      `scheduleRootCall: expected scheduler.Dispatched at block ${network.chain.head.number}, got: ${summary.join(', ')}`
+    );
+  }
 }

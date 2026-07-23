@@ -1,0 +1,339 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`XCM Enable Auto-Renew with Coretime > opens HRMP with Coretime then enables broker auto-renew via governance XCM > coretime-events 1`] = `
+[
+  {
+    "data": {
+      "dispatchInfo": {
+        "class": "Mandatory",
+        "paysFee": "Yes",
+        "weight": {
+          "proofSize": "(rounded 1500)",
+          "refTime": "(rounded 280000000)",
+        },
+      },
+    },
+    "method": "ExtrinsicSuccess",
+    "section": "system",
+  },
+  {
+    "data": {
+      "count": 2,
+    },
+    "method": "DownwardMessagesReceived",
+    "section": "parachainSystem",
+  },
+  {
+    "data": {
+      "dmqHead": "(hash)",
+      "weightUsed": {
+        "proofSize": "(rounded 3500)",
+        "refTime": "(rounded 1000000000)",
+      },
+    },
+    "method": "DownwardMessagesProcessed",
+    "section": "parachainSystem",
+  },
+  {
+    "data": {
+      "dispatchInfo": {
+        "class": "Mandatory",
+        "paysFee": "Yes",
+        "weight": {
+          "proofSize": 0,
+          "refTime": "(rounded 130000000)",
+        },
+      },
+    },
+    "method": "ExtrinsicSuccess",
+    "section": "system",
+  },
+  {
+    "data": {
+      "id": "(hash)",
+      "messageIndex": 0,
+      "origin": "Parent",
+      "pageIndex": "(rounded 5400)",
+    },
+    "method": "OverweightEnqueued",
+    "section": "messageQueue",
+  },
+  {
+    "data": {
+      "id": "(hash)",
+      "messageIndex": 1,
+      "origin": "Parent",
+      "pageIndex": "(rounded 5400)",
+    },
+    "method": "OverweightEnqueued",
+    "section": "messageQueue",
+  },
+  {
+    "data": {
+      "who": "13cKp88npNh8qoUAS1gsDf1nfx3Ld138KehsN5Zg594unc7o",
+    },
+    "method": "Upgraded",
+    "section": "balances",
+  },
+  {
+    "data": {
+      "amount": 10000000000,
+      "who": "13cKp88npNh8qoUAS1gsDf1nfx3Ld138KehsN5Zg594unc7o",
+    },
+    "method": "Withdraw",
+    "section": "balances",
+  },
+  {
+    "data": {
+      "core": 17,
+      "task": "(rounded 2100)",
+    },
+    "method": "AutoRenewalEnabled",
+    "section": "broker",
+  },
+  {
+    "data": {
+      "amount": "(rounded 9900000000)",
+      "who": "13cKp88npNh8qoUAS1gsDf1nfx3Ld138KehsN5Zg594unc7o",
+    },
+    "method": "Deposit",
+    "section": "balances",
+  },
+  {
+    "data": {
+      "amount": "(rounded 70000000)",
+      "who": "13UVJyLgBASGhE2ok3TvxUfaQBGUt88JCcdYjHvUhvQkFTTx",
+    },
+    "method": "Deposit",
+    "section": "balances",
+  },
+  {
+    "data": {
+      "id": "(hash)",
+      "origin": {
+        "Sibling": "(rounded 2100)",
+      },
+      "success": true,
+      "weightUsed": {
+        "proofSize": "(rounded 370000)",
+        "refTime": "(rounded 15000000000)",
+      },
+    },
+    "method": "Processed",
+    "section": "messageQueue",
+  },
+]
+`;
+
+exports[`XCM Enable Auto-Renew with Coretime > opens HRMP with Coretime then enables broker auto-renew via governance XCM > frequency-events 1`] = `
+[
+  {
+    "data": {
+      "messageHash": "(hash)",
+    },
+    "method": "XcmpMessageSent",
+    "section": "xcmpQueue",
+  },
+  {
+    "data": {
+      "destination": {
+        "interior": {
+          "X1": [
+            {
+              "Parachain": "(rounded 1000)",
+            },
+          ],
+        },
+        "parents": 1,
+      },
+      "message": [
+        {
+          "WithdrawAsset": [
+            {
+              "fun": {
+                "Fungible": 10000000000,
+              },
+              "id": {
+                "interior": "Here",
+                "parents": 1,
+              },
+            },
+          ],
+        },
+        {
+          "PayFees": {
+            "asset": {
+              "fun": {
+                "Fungible": 10000000000,
+              },
+              "id": {
+                "interior": "Here",
+                "parents": 1,
+              },
+            },
+          },
+        },
+        {
+          "Transact": {
+            "call": {
+              "encoded": "0x321511002b08000001cd3b0600",
+            },
+            "fallbackMaxWeight": {
+              "proofSize": "(rounded 6200)",
+              "refTime": "(rounded 990000000)",
+            },
+            "originKind": "SovereignAccount",
+          },
+        },
+        "RefundSurplus",
+        {
+          "DepositAsset": {
+            "assets": {
+              "Wild": "All",
+            },
+            "beneficiary": {
+              "interior": {
+                "X1": [
+                  {
+                    "Parachain": "(rounded 2100)",
+                  },
+                ],
+              },
+              "parents": 1,
+            },
+          },
+        },
+      ],
+      "messageId": "(hash)",
+      "origin": {
+        "interior": "Here",
+        "parents": 0,
+      },
+    },
+    "method": "Sent",
+    "section": "polkadotXcm",
+  },
+  {
+    "data": {
+      "id": null,
+      "result": "Ok",
+      "task": [
+        "(rounded 13000000)",
+        0,
+      ],
+    },
+    "method": "Dispatched",
+    "section": "scheduler",
+  },
+  {
+    "data": {
+      "dispatchInfo": {
+        "class": "Mandatory",
+        "paysFee": "Yes",
+        "weight": {
+          "proofSize": "(rounded 2000)",
+          "refTime": "(rounded 410000000)",
+        },
+      },
+    },
+    "method": "ExtrinsicSuccess",
+    "section": "system",
+  },
+  {
+    "data": {
+      "dispatchInfo": {
+        "class": "Mandatory",
+        "paysFee": "Yes",
+        "weight": {
+          "proofSize": 0,
+          "refTime": "(rounded 98000000)",
+        },
+      },
+    },
+    "method": "ExtrinsicSuccess",
+    "section": "system",
+  },
+]
+`;
+
+exports[`XCM Enable Auto-Renew with Coretime > opens HRMP with Coretime then enables broker auto-renew via governance XCM > frequency-hrmp-events 1`] = `
+[
+  {
+    "data": [
+      "ConcatenatedVersionedXcm",
+      {
+        "v5": [
+          {
+            "withdrawAsset": [
+              {
+                "fun": {
+                  "fungible": 10000000000,
+                },
+                "id": {
+                  "interior": {
+                    "here": null,
+                  },
+                  "parents": 1,
+                },
+              },
+            ],
+          },
+          {
+            "payFees": {
+              "asset": {
+                "fun": {
+                  "fungible": 10000000000,
+                },
+                "id": {
+                  "interior": {
+                    "here": null,
+                  },
+                  "parents": 1,
+                },
+              },
+            },
+          },
+          {
+            "transact": {
+              "call": {
+                "encoded": "0x321511002b08000001cd3b0600",
+              },
+              "fallbackMaxWeight": {
+                "proofSize": 6196,
+                "refTime": 985413000,
+              },
+              "originKind": "SovereignAccount",
+            },
+          },
+          {
+            "refundSurplus": null,
+          },
+          {
+            "depositAsset": {
+              "assets": {
+                "wild": {
+                  "all": null,
+                },
+              },
+              "beneficiary": {
+                "interior": {
+                  "x1": [
+                    {
+                      "parachain": 2091,
+                    },
+                  ],
+                },
+                "parents": 1,
+              },
+            },
+          },
+          {
+            "setTopic": "0xe99734b87687ada46675b4371ddccbbff906c6f108f37fedec33b31d5c23e99b",
+          },
+        ],
+      },
+    ],
+    "recipient": 1005,
+  },
+]
+`;

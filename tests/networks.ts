@@ -3,15 +3,18 @@ import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig();
 
-/** Frequency parachain ID on Polkadot mainnet */
 export const FREQUENCY_PARA_ID = 2091;
 
-/** Coretime system parachain ID on Polkadot */
 export const CORETIME_PARA_ID = 1005;
 
 const endpoints = {
   polkadot: ['wss://rpc.ibp.network/polkadot', 'wss://polkadot-rpc.dwellir.com'],
   frequency: ['wss://0.rpc.frequency.xyz'],
+  coretime: [
+    'wss://polkadot-coretime-rpc.polkadot.io',
+    'wss://sys.ibp.network/coretime-polkadot',
+    'wss://polkadot-coretime-rpc.dwellir.com',
+  ],
 };
 
 const toNumber = (value: string | undefined): number | undefined => {
@@ -49,6 +52,20 @@ export default {
       ...options,
     };
     console.log('Setting up Frequency network with options:', config);
+    return setupContext(config);
+  },
+  coretime: (options?: Partial<SetupOption>): Promise<Network> => {
+    const config = {
+      wasmOverride: process.env.CORETIME_WASM || undefined,
+      allowUnresolvedImports: true,
+      blockNumber: toNumber(process.env.CORETIME_BLOCK_NUMBER) || 4739422,
+      endpoint: process.env.CORETIME_ENDPOINT ?? endpoints.coretime,
+      db: !process.env.RUN_TESTS_WITHOUT_DB ? './db/coretime-db.sqlite' : undefined,
+      runtimeLogLevel: 5,
+      processQueuedMessages: true,
+      ...options,
+    };
+    console.log('Setting up Coretime network with options:', config);
     return setupContext(config);
   },
 };
