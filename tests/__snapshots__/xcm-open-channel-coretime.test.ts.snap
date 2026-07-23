@@ -20,7 +20,7 @@ exports[`XCM Channel Opening with Coretime > opens HRMP channel with Coretime vi
           "WithdrawAsset": [
             {
               "fun": {
-                "Fungible": 500000000000,
+                "Fungible": "(rounded 20000000000)",
               },
               "id": {
                 "interior": "Here",
@@ -33,7 +33,7 @@ exports[`XCM Channel Opening with Coretime > opens HRMP channel with Coretime vi
           "BuyExecution": {
             "fees": {
               "fun": {
-                "Fungible": 500000000000,
+                "Fungible": "(rounded 20000000000)",
               },
               "id": {
                 "interior": "Here",
@@ -49,8 +49,8 @@ exports[`XCM Channel Opening with Coretime > opens HRMP channel with Coretime vi
               "encoded": "0x3c0aed030000",
             },
             "fallbackMaxWeight": {
-              "proofSize": "(rounded 74000)",
-              "refTime": 12000000000,
+              "proofSize": "(rounded 6300)",
+              "refTime": "(rounded 1500000000)",
             },
             "originKind": "Native",
           },
@@ -134,7 +134,7 @@ exports[`XCM Channel Opening with Coretime > opens HRMP channel with Coretime vi
         "withdrawAsset": [
           {
             "fun": {
-              "fungible": 500000000000,
+              "fungible": 20028018152,
             },
             "id": {
               "interior": {
@@ -149,7 +149,7 @@ exports[`XCM Channel Opening with Coretime > opens HRMP channel with Coretime vi
         "buyExecution": {
           "fees": {
             "fun": {
-              "fungible": 500000000000,
+              "fungible": 20028018152,
             },
             "id": {
               "interior": {
@@ -169,8 +169,8 @@ exports[`XCM Channel Opening with Coretime > opens HRMP channel with Coretime vi
             "encoded": "0x3c0aed030000",
           },
           "fallbackMaxWeight": {
-            "proofSize": 73603,
-            "refTime": 12000000000,
+            "proofSize": 6345,
+            "refTime": 1514828000,
           },
           "originKind": "Native",
         },
@@ -198,7 +198,7 @@ exports[`XCM Channel Opening with Coretime > opens HRMP channel with Coretime vi
         },
       },
       {
-        "setTopic": "0xb84ec0c0e3b547bc93c815ba65c9d90f07baaa7e40a97182964edfdf661f7ba8",
+        "setTopic": "0xf6b36ef5a375ab595d260eb6c7eef3251dda44b93981124c5a511b558ea1bb93",
       },
     ],
   },
@@ -216,7 +216,7 @@ exports[`XCM Channel Opening with Coretime > opens HRMP channel with Coretime vi
   },
   {
     "data": {
-      "amount": 500000000000,
+      "amount": "(rounded 20000000000)",
       "who": "13YMK2dyjeWEiCk1t1jn71fyRUN2uaz2G14S783BCR3LvvaD",
     },
     "method": "Withdraw",
@@ -244,7 +244,7 @@ exports[`XCM Channel Opening with Coretime > opens HRMP channel with Coretime vi
   },
   {
     "data": {
-      "amount": "(rounded 500000000000)",
+      "amount": "(rounded 20000000000)",
       "who": "13YMK2dyjeWEiCk1t1jn71fyRUN2uaz2G14S783BCR3LvvaD",
     },
     "method": "Deposit",

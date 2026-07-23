@@ -25,8 +25,8 @@ describe('XCM Channel Opening with Coretime', async () => {
     await connectVertical(polkadot.chain, frequency.chain);
 
     const DOT_UNIT = 10_000_000_000n;
-
-    const POLKADOT_FEE = 50n * DOT_UNIT;
+    // Cover XCM buy-execution + a buffer beyond the Transact call fee alone.
+    const FEE_BUFFER_DOT = 2n * DOT_UNIT;
 
     // Frequency parachain sovereign on Polkadot. It pays relay XCM fees when send is Root
     const childSovereignAccount = await getChildSovereignAccount(FREQUENCY_PARA_ID);
@@ -65,6 +65,16 @@ describe('XCM Channel Opening with Coretime', async () => {
 
     const hrmpOpenCall = polkadot.api.tx.hrmp.establishChannelWithSystem(CORETIME_PARA_ID);
     const encodedHrmpCall = hrmpOpenCall.method.toHex();
+    const callInfo = await polkadot.api.call.transactionPaymentCallApi.queryCallInfo(
+      hrmpOpenCall.method,
+      hrmpOpenCall.method.toU8a().length
+    );
+    const weight = callInfo.weight.toJSON() as { refTime: number; proofSize: number };
+    const partialFee = BigInt(callInfo.partialFee.toString());
+    const polkadotFee = partialFee + FEE_BUFFER_DOT;
+    console.log(
+      `establishChannelWithSystem weight=${JSON.stringify(weight)} partialFee=${partialFee} withdraw=${polkadotFee}`
+    );
 
     const destination = {
       V3: {
@@ -85,7 +95,7 @@ describe('XCM Channel Opening with Coretime', async () => {
                 },
               },
               fun: {
-                Fungible: POLKADOT_FEE,
+                Fungible: polkadotFee,
               },
             },
           ],
@@ -100,7 +110,7 @@ describe('XCM Channel Opening with Coretime', async () => {
                 },
               },
               fun: {
-                Fungible: POLKADOT_FEE,
+                Fungible: polkadotFee,
               },
             },
             weightLimit: 'Unlimited',
@@ -111,8 +121,8 @@ describe('XCM Channel Opening with Coretime', async () => {
             // establishChannelWithSystem requires parachain origin (ensure_parachain)
             origin_kind: 'Native',
             require_weight_at_most: {
-              ref_time: 12000000000,
-              proof_size: 73603,
+              ref_time: weight.refTime,
+              proof_size: weight.proofSize,
             },
             call: {
               encoded: encodedHrmpCall,
